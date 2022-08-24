@@ -1,0 +1,99 @@
+{
+  "name": "electron-vite",
+  "version": "0.0.0",
+  "main": "main.js",
+  "license": "GPL-3.0-or-later",
+  "description": "Electron with Vue support",
+  "author": {
+      "name": "Ettore Ongaro ",
+      "email": "ettore9538@gmail.com",
+      "url": "https://github.com/iosonoagenda"
+  },
+  "scripts": {
+    "start": "yarn run build && electron .",
+    "dist": "yarn run build && electron-builder -wml",
+    "distWin": "yarn run build && electron-builder -w",
+    "distMac": "yarn run build && electron-builder -m",
+    "distLin": "yarn run build && electron-builder -l",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "build": {
+      "appId": "ch.ongaro.ettore.${name}",
+      "productName": "ElectronVite",
+      "artifactName": "${productName}-${os}-${arch}.${ext}",
+      "directories": {
+          "output": "out"
+      },
+      "files": [
+          "**/*",
+          "build/*",
+          "!env.example.json",
+          "!**/{out,src,public,.run}",
+          "!**/{*.md,*.pdf}",
+          "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+          "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+          "!**/node_modules/*.d.ts",
+          "!**/node_modules/.bin",
+          "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+          "!.editorconfig",
+          "!**/._*",
+          "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+          "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+          "!**/{appveyor.yml,.travis.yml,circle.yml}",
+          "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+      ],
+      "win": {
+          "appId": "ch.ongaro.ettore.electron-vite",
+          "target": [
+              {
+                  "target": "portable"
+              },
+              {
+                  "target": "nsis"
+              }
+          ]
+      },
+      "nsis": {
+          "artifactName": "${productName}-${os}-${arch}-setup.${ext}",
+          "oneClick": false,
+          "allowToChangeInstallationDirectory": true
+      },
+      "mac": {
+          "target": "dmg",
+          "category": "public.app-category.utilities"
+      },
+      "linux": {
+          "synopsis": "Electron with Vue support",
+          "category": "Utility",
+          "target": [
+              {
+                  "target": "AppImage"
+              },
+              {
+                  "target": "deb"
+              },
+              {
+                  "target": "rpm"
+              }
+          ]
+      }
+  },
+  "dependencies": {
+    "vite-plugin-electron": "^0.9.1",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "electron": "^20.0.3",
+    "electron-builder": "^23.3.3",
+    "eslint": "^8.21.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "prettier": "^2.7.1",
+    "vite": "^3.0.4"
+  }
+}
