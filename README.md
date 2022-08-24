@@ -16,7 +16,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 yarn install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile and run for Development
 
 ```sh
 yarn start
